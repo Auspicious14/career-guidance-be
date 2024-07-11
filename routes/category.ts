@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import { createCategory, getCategories } from "../controllers/category";
 import { authMiddleware } from "../middlewares/auth";
 

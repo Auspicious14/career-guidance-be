@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import { createProfession, getProfessions } from "../controllers/profession";
 import { authMiddleware } from "../middlewares/auth";
 

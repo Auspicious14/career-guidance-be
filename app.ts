@@ -1,5 +1,5 @@
 import express from "express";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 import authRoutes from "./routes/auth";
 import categoryRoutes from "./routes/category";
 import professionRoutes from "./routes/profession";
