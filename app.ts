@@ -4,6 +4,7 @@ import authRoutes from "./routes/auth";
 import categoryRoutes from "./routes/category";
 import professionRoutes from "./routes/profession";
 import typeRoutes from "./routes/type";
+import userRoutes from "./routes/user";
 
 dotenv.config();
 
@@ -15,5 +16,6 @@ app.use(authRoutes);
 app.use(categoryRoutes);
 app.use(professionRoutes);
 app.use(typeRoutes);
+app.use(userRoutes);
 
 export default app;

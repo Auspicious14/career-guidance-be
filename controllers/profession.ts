@@ -22,3 +22,34 @@ export const getProfessions = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+export const getProfessionById = async (req: Request, res: Response) => {
+  const profession = await Profession.findById(req.params.id);
+  if (profession) {
+    res.json(profession);
+  } else {
+    res.status(404).json({ message: "Profession not found" });
+  }
+};
+
+export const updateProfession = async (req: Request, res: Response) => {
+  const profession = await Profession.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
+  if (profession) {
+    res.json(profession);
+  } else {
+    res.status(404).json({ message: "Profession not found" });
+  }
+};
+
+export const deleteProfession = async (req: Request, res: Response) => {
+  const profession = await Profession.findByIdAndDelete(req.params.id);
+  if (profession) {
+    res.json({ message: "Profession deleted" });
+  } else {
+    res.status(404).json({ message: "Profession not found" });
+  }
+};
