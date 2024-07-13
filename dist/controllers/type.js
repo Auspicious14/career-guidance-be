@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTypes = exports.createType = void 0;
+exports.deleteType = exports.updateType = exports.getTypeById = exports.getTypes = exports.createType = void 0;
 const type_1 = __importDefault(require("../models/type"));
 const createType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, profession, steps } = req.body;
     try {
         const type = new type_1.default({ name, profession, steps });
         yield type.save();
-        res.status(201).json(type);
+        res.status(201).json({ data: type });
     }
     catch (error) {
         res.status(500).json({ message: "Server error" });
@@ -36,3 +36,35 @@ const getTypes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getTypes = getTypes;
+const getTypeById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const type = yield type_1.default.findById(req.params.id);
+    if (type) {
+        res.json(type);
+    }
+    else {
+        res.status(404).json({ message: "Type not found" });
+    }
+});
+exports.getTypeById = getTypeById;
+const updateType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const type = yield type_1.default.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    });
+    if (type) {
+        res.json(type);
+    }
+    else {
+        res.status(404).json({ message: "Type not found" });
+    }
+});
+exports.updateType = updateType;
+const deleteType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const type = yield type_1.default.findByIdAndDelete(req.params.id);
+    if (type) {
+        res.json({ message: "Type deleted" });
+    }
+    else {
+        res.status(404).json({ message: "Type not found" });
+    }
+});
+exports.deleteType = deleteType;

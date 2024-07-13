@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProfessions = exports.createProfession = void 0;
+exports.deleteProfession = exports.updateProfession = exports.getProfessionById = exports.getProfessions = exports.createProfession = void 0;
 const profession_1 = __importDefault(require("../models/profession"));
 const createProfession = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, category } = req.body;
@@ -36,3 +36,33 @@ const getProfessions = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getProfessions = getProfessions;
+const getProfessionById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const profession = yield profession_1.default.findById(req.params.id);
+    if (profession) {
+        res.json(profession);
+    }
+    else {
+        res.status(404).json({ message: "Profession not found" });
+    }
+});
+exports.getProfessionById = getProfessionById;
+const updateProfession = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const profession = yield profession_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (profession) {
+        res.json(profession);
+    }
+    else {
+        res.status(404).json({ message: "Profession not found" });
+    }
+});
+exports.updateProfession = updateProfession;
+const deleteProfession = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const profession = yield profession_1.default.findByIdAndDelete(req.params.id);
+    if (profession) {
+        res.json({ message: "Profession deleted" });
+    }
+    else {
+        res.status(404).json({ message: "Profession not found" });
+    }
+});
+exports.deleteProfession = deleteProfession;
