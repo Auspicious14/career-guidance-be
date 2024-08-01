@@ -6,6 +6,7 @@ import categoryRoutes from "./routes/category";
 import professionRoutes from "./routes/profession";
 import typeRoutes from "./routes/type";
 import userRoutes from "./routes/user";
+import infoRoutes from "./routes/info";
 import { setupSwagger } from "./swagger";
 
 const app = express();
@@ -33,6 +34,8 @@ app.use(categoryRoutes);
 app.use(professionRoutes);
 app.use(typeRoutes);
 app.use(userRoutes);
+app.use(userRoutes);
+app.use(infoRoutes);
 setupSwagger(app);
 
 export default app;
