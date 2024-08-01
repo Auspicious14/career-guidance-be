@@ -28,7 +28,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use(authRoutes);
+app.use("/auth", authRoutes);
 app.use(categoryRoutes);
 app.use(professionRoutes);
 app.use(typeRoutes);

@@ -68,7 +68,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /auth/register:
+ * /auth/signup:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth]
@@ -84,7 +84,7 @@ const router = express.Router();
  *       500:
  *         description: Some server error
  */
-router.post("/signin", register);
+router.post("/signup", register);
 
 /**
  * @swagger
